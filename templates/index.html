@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recon Search</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Recon Search App</h1>
+        <form method="post">
+            <input type="text" name="keyword" placeholder="ادخل الكلمة..." required>
+            <button type="submit">بحث</button>
+        </form>
+
+        {% if results %}
+            <h2>النتائج:</h2>
+            <ul class="results">
+                {% for item in results %}
+                    <li>
+                        <strong>📄 {{ item.file }} - سطر {{ item.line_number }}:</strong><br>
+                        <span class="line">{{ item.content|safe }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
